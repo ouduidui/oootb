@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+// @ts-check
+
 import path from 'path'
 import fs from 'fs'
 import minimist from 'minimist'
@@ -16,7 +19,7 @@ const init = async () => {
   const argv = minimist(process.argv.slice(2), { boolean: true })
 
   let targetDir
-  let result = {}
+  let result = null
   try {
     // Prompts:
     // - Project name:
@@ -67,6 +70,8 @@ const init = async () => {
     process.exit(1)
   }
 
+  if (!result) process.exit(1)
+
   const { projectName, packageName, shouldCreateNewDir, shouldOverwrite = false, template } = result
 
   const root = shouldCreateNewDir ? path.join(cwd, projectName) : cwd
@@ -82,11 +87,10 @@ const init = async () => {
   const pkg = { name: packageName, version: '0.0.0' }
   fs.writeFileSync(path.resolve(root, 'package.json'), JSON.stringify(pkg, null, 2))
 
-  const templateDir = path.join(cwd, `./templates/${template}`)
+  const templateDir = path.join(__dirname, `./templates/${template}`)
   renderTemplate(templateDir, root)
 
-  console.log(`\nDone. Now run:\n`)
-  console.log(`  ${bold(green(getCommand(packageManager, 'dev')))}`)
+  console.log(`\nDone.\n`)
   console.log()
 }
 
