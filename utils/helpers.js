@@ -1,11 +1,11 @@
-const fs = require('fs')
-const path = require('path')
+import path from 'path'
+import fs from 'fs'
 
-const canSafelyOverwrite = (dir) => !fs.existsSync(dir) || fs.readdirSync(dir).length === 0
+export const canSafelyOverwrite = (dir) => !fs.existsSync(dir) || fs.readdirSync(dir).length === 0
 
-const isValidPackageName = (projectName) => /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(projectName)
+export const isValidPackageName = (projectName) => /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(projectName)
 
-const toValidPackageName = (projectName) =>
+export const toValidPackageName = (projectName) =>
   projectName
     .trim()
     .toLowerCase()
@@ -13,7 +13,7 @@ const toValidPackageName = (projectName) =>
     .replace(/^[._]/, '')
     .replace(/[^a-z0-9-~]+/g, '-')
 
-const emptyDir = (dir) => {
+export const emptyDir = (dir) => {
   if (!fs.existsSync(dir)) return
 
   postOrderDirectoryTraverse(
@@ -33,11 +33,4 @@ function postOrderDirectoryTraverse(dir, dirCallback, fileCallback) {
     }
     fileCallback(fullPath)
   }
-}
-
-module.exports = {
-  canSafelyOverwrite,
-  isValidPackageName,
-  toValidPackageName,
-  emptyDir,
 }

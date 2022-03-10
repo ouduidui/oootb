@@ -1,7 +1,7 @@
-const path = require('path')
-const fs = require('fs')
+import path from 'path'
+import fs from 'fs'
 
-const renderTemplate = (src, dest) => {
+export const renderTemplate = (src, dest) => {
   const stat = fs.statSync(src)
 
   if (stat.isDirectory()) {
@@ -29,8 +29,4 @@ const renderTemplate = (src, dest) => {
   }
 
   fs.copyFileSync(src, dest)
-}
-
-module.exports = {
-  renderTemplate,
 }

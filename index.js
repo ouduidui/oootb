@@ -1,10 +1,10 @@
-const path = require('path')
-const fs = require('fs')
-const minimist = require('minimist')
-const prompts = require('prompts')
-const { canSafelyOverwrite, isValidPackageName, toValidPackageName, emptyDir } = require('./utils/helpers')
-const { templateChoices } = require('./utils/templateOptions')
-const { renderTemplate } = require('./utils/renderTemplate')
+import path from 'path'
+import fs from 'fs'
+import minimist from 'minimist'
+import prompts from 'prompts'
+import { canSafelyOverwrite, isValidPackageName, toValidPackageName, emptyDir } from './utils/helpers'
+import { templateChoices } from './utils/templateOptions'
+import { renderTemplate } from './utils/renderTemplate'
 
 const defaultProjectName = 'ou-app'
 

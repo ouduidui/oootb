@@ -1,7 +1,9 @@
-/*! ou v1.0.0 | ISC */
+var __create = Object.create;
 var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __propIsEnum = Object.prototype.propertyIsEnumerable;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
@@ -16,8 +18,20 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
+var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var __reExport = (target, module2, copyDefault, desc) => {
+  if (module2 && typeof module2 === "object" || typeof module2 === "function") {
+    for (let key of __getOwnPropNames(module2))
+      if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
+        __defProp(target, key, { get: () => module2[key], enumerable: !(desc = __getOwnPropDesc(module2, key)) || desc.enumerable });
+  }
+  return target;
+};
+var __toESM = (module2, isNodeMode) => {
+  return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", !isNodeMode && module2 && module2.__esModule ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
 };
 
 // node_modules/.pnpm/minimist@1.2.5/node_modules/minimist/index.js
@@ -5253,103 +5267,78 @@ var require_prompts3 = __commonJS({
   }
 });
 
+// index.js
+var import_path3 = __toESM(require("path"), 1);
+var import_fs3 = __toESM(require("fs"), 1);
+var import_minimist = __toESM(require_minimist(), 1);
+var import_prompts = __toESM(require_prompts3(), 1);
+
 // utils/helpers.js
-var require_helpers = __commonJS({
-  "utils/helpers.js"(exports, module2) {
-    var fs2 = require("fs");
-    var path2 = require("path");
-    var canSafelyOverwrite2 = (dir) => !fs2.existsSync(dir) || fs2.readdirSync(dir).length === 0;
-    var isValidPackageName2 = (projectName) => /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(projectName);
-    var toValidPackageName2 = (projectName) => projectName.trim().toLowerCase().replace(/\s+/g, "-").replace(/^[._]/, "").replace(/[^a-z0-9-~]+/g, "-");
-    var emptyDir2 = (dir) => {
-      if (!fs2.existsSync(dir))
-        return;
-      postOrderDirectoryTraverse(dir, (dir2) => fs2.rmdirSync(dir2), (file) => fs2.unlinkSync(file));
-    };
-    function postOrderDirectoryTraverse(dir, dirCallback, fileCallback) {
-      for (const filename of fs2.readdirSync(dir)) {
-        const fullPath = path2.resolve(dir, filename);
-        if (fs2.lstatSync(fullPath).isDirectory()) {
-          postOrderDirectoryTraverse(fullPath, dirCallback, fileCallback);
-          dirCallback(fullPath);
-          continue;
-        }
-        fileCallback(fullPath);
-      }
+var import_path = __toESM(require("path"), 1);
+var import_fs = __toESM(require("fs"), 1);
+var canSafelyOverwrite = (dir) => !import_fs.default.existsSync(dir) || import_fs.default.readdirSync(dir).length === 0;
+var isValidPackageName = (projectName) => /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(projectName);
+var toValidPackageName = (projectName) => projectName.trim().toLowerCase().replace(/\s+/g, "-").replace(/^[._]/, "").replace(/[^a-z0-9-~]+/g, "-");
+var emptyDir = (dir) => {
+  if (!import_fs.default.existsSync(dir))
+    return;
+  postOrderDirectoryTraverse(dir, (dir2) => import_fs.default.rmdirSync(dir2), (file) => import_fs.default.unlinkSync(file));
+};
+function postOrderDirectoryTraverse(dir, dirCallback, fileCallback) {
+  for (const filename of import_fs.default.readdirSync(dir)) {
+    const fullPath = import_path.default.resolve(dir, filename);
+    if (import_fs.default.lstatSync(fullPath).isDirectory()) {
+      postOrderDirectoryTraverse(fullPath, dirCallback, fileCallback);
+      dirCallback(fullPath);
+      continue;
     }
-    module2.exports = {
-      canSafelyOverwrite: canSafelyOverwrite2,
-      isValidPackageName: isValidPackageName2,
-      toValidPackageName: toValidPackageName2,
-      emptyDir: emptyDir2
-    };
+    fileCallback(fullPath);
   }
-});
+}
 
 // utils/templateOptions.js
-var require_templateOptions = __commonJS({
-  "utils/templateOptions.js"(exports, module2) {
-    var templateOptions = [
-      { id: "vue3-lite", label: "vue3-lite-template  (without router and store)" }
-    ];
-    var optionsToChoices = () => templateOptions.map((o) => ({ title: o.label, value: o.id }));
-    module2.exports = {
-      templateOptions,
-      templateChoices: optionsToChoices()
-    };
-  }
-});
+var templateOptions = [
+  { id: "vue3-lite", label: "vue3-lite-template  (without router and store)" }
+];
+var optionsToChoices = () => templateOptions.map((o) => ({ title: o.label, value: o.id }));
+var templateChoices = optionsToChoices();
 
 // utils/renderTemplate.js
-var require_renderTemplate = __commonJS({
-  "utils/renderTemplate.js"(exports, module2) {
-    var path2 = require("path");
-    var fs2 = require("fs");
-    var renderTemplate2 = (src, dest) => {
-      const stat = fs2.statSync(src);
-      if (stat.isDirectory()) {
-        if (path2.basename(src) === "node_modules")
-          return;
-        fs2.mkdirSync(dest, { recursive: true });
-        for (const file of fs2.readdirSync(src)) {
-          renderTemplate2(path2.resolve(src, file), path2.resolve(dest, file));
-        }
-        return;
-      }
-      const filename = path2.basename(src);
-      if (filename === "package.json" && fs2.existsSync(dest)) {
-        return;
-      }
-      if (/^\./.test(filename))
-        return;
-      if (/^\_/.test(filename)) {
-        dest = path2.resolve(path2.dirname(dest), filename.replace(/^_/, "."));
-      }
-      fs2.copyFileSync(src, dest);
-    };
-    module2.exports = {
-      renderTemplate: renderTemplate2
-    };
+var import_path2 = __toESM(require("path"), 1);
+var import_fs2 = __toESM(require("fs"), 1);
+var renderTemplate = (src, dest) => {
+  const stat = import_fs2.default.statSync(src);
+  if (stat.isDirectory()) {
+    if (import_path2.default.basename(src) === "node_modules")
+      return;
+    import_fs2.default.mkdirSync(dest, { recursive: true });
+    for (const file of import_fs2.default.readdirSync(src)) {
+      renderTemplate(import_path2.default.resolve(src, file), import_path2.default.resolve(dest, file));
+    }
+    return;
   }
-});
+  const filename = import_path2.default.basename(src);
+  if (filename === "package.json" && import_fs2.default.existsSync(dest)) {
+    return;
+  }
+  if (/^\./.test(filename))
+    return;
+  if (/^\_/.test(filename)) {
+    dest = import_path2.default.resolve(import_path2.default.dirname(dest), filename.replace(/^_/, "."));
+  }
+  import_fs2.default.copyFileSync(src, dest);
+};
 
 // index.js
-var path = require("path");
-var fs = require("fs");
-var minimist = require_minimist();
-var prompts = require_prompts3();
-var { canSafelyOverwrite, isValidPackageName, toValidPackageName, emptyDir } = require_helpers();
-var { templateChoices } = require_templateOptions();
-var { renderTemplate } = require_renderTemplate();
 var defaultProjectName = "ou-app";
 var init = async () => {
   console.log("init");
   const cwd = process.cwd();
-  const argv = minimist(process.argv.slice(2), { boolean: true });
+  const argv = (0, import_minimist.default)(process.argv.slice(2), { boolean: true });
   let targetDir;
   let result = {};
   try {
-    result = await prompts([
+    result = await (0, import_prompts.default)([
       {
         name: "projectName",
         type: "text",
@@ -5392,20 +5381,20 @@ var init = async () => {
     process.exit(1);
   }
   const { projectName, packageName, shouldCreateNewDir, shouldOverwrite = false, template } = result;
-  const root = shouldCreateNewDir ? path.join(cwd, projectName) : cwd;
+  const root = shouldCreateNewDir ? import_path3.default.join(cwd, projectName) : cwd;
   if (shouldCreateNewDir) {
-    if (fs.existsSync(root) && shouldOverwrite)
+    if (import_fs3.default.existsSync(root) && shouldOverwrite)
       emptyDir(root);
-    else if (fs.existsSync(root))
+    else if (import_fs3.default.existsSync(root))
       process.exit(1);
     else
-      fs.mkdirSync(root);
+      import_fs3.default.mkdirSync(root);
   }
   console.log(`
 Scaffolding project in ${root}...`);
   const pkg = { name: packageName, version: "0.0.0" };
-  fs.writeFileSync(path.resolve(root, "package.json"), JSON.stringify(pkg, null, 2));
-  const templateDir = path.join(cwd, `./templates/${template}`);
+  import_fs3.default.writeFileSync(import_path3.default.resolve(root, "package.json"), JSON.stringify(pkg, null, 2));
+  const templateDir = import_path3.default.join(cwd, `./templates/${template}`);
   renderTemplate(templateDir, root);
   console.log(`
 Done. Now run:

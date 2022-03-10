@@ -1,4 +1,4 @@
-const templateOptions = [
+export const templateOptions = [
   // { id: 'NODE', label: 'node-ts-template' },
   // { id: 'VUE3', label: 'vue3-template' },
   { id: 'vue3-lite', label: 'vue3-lite-template  (without router and store)' },
@@ -6,10 +6,6 @@ const templateOptions = [
   // { id: 'REACT_LITE', label: 'react-lite-template' },
 ]
 
-const optionsToChoices = () =>
-  templateOptions.map((o) => ({ title: o.label, value: o.id }))
+const optionsToChoices = () => templateOptions.map((o) => ({ title: o.label, value: o.id }))
 
-module.exports = {
-  templateOptions,
-  templateChoices: optionsToChoices(),
-}
+export const templateChoices = optionsToChoices()

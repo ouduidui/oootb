@@ -1,18 +1,29 @@
 {
-  "name": "ou",
-  "version": "1.0.0",
+  "name": "@ouduidui/ou",
+  "version": "0.0.1",
   "description": "a cli for doing something.",
   "keywords": [],
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ouduidui/ou.git"
   },
+  "type": "module",
+  "bin": {
+    "ou": "outfile.cjs"
+  },
+  "files": [
+    "outfile.cjs",
+    "templates"
+  ],
   "author": "",
-  "main": "index.js",
+  "engines": {
+    "node": "^14.13.1 || >=16.0.0"
+  },
   "scripts": {
     "dev": "node ./index",
-    "build": "zx ./scripts/build.mjs"
+    "build": "zx ./scripts/build.mjs",
+    "release": "lerna publish"
   },
   "bugs": {
     "url": "https://github.com/ouduidui/ou/issues"
@@ -21,6 +32,7 @@
   "devDependencies": {
     "esbuild": "^0.14.25",
     "kolorist": "^1.5.1",
+    "lerna": "^4.0.0",
     "minimist": "^1.2.5",
     "prompts": "^2.4.2",
     "zx": "^5.2.0"
