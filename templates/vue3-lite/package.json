@@ -1,23 +1,22 @@
 {
   "name": "vue3-lite",
-  "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview",
+    "dev": "vite",
+    "format": "eslint \"**/*.{vue,ts,js}\" --fix",
     "lint": "eslint \"**/*.{vue,ts,js}\"",
-    "format": "eslint \"**/*.{vue,ts,js}\" --fix"
+    "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^7.7.0",
     "vue": "^3.2.25",
-    "vue-router": "^4.0.12",
-    "@vueuse/core": "^7.7.0"
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.16.1",
-    "@ouduidui/eslint-config-vue": "^0.0.2",
     "@iconify-json/carbon": "^1.1.1",
+    "@ouduidui/eslint-config-vue": "^0.0.2",
     "@types/node": "^17.0.21",
     "@unocss/reset": "^0.26.3",
     "@vitejs/plugin-vue": "^2.2.2",
@@ -31,5 +30,6 @@
     "vite": "^2.8.4",
     "vite-plugin-pages": "^0.20.2",
     "vitest": "^0.5.7"
-  }
+  },
+  "private": true
 }
