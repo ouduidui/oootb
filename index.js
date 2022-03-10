@@ -84,6 +84,10 @@ const init = async () => {
 
   const templateDir = path.join(cwd, `./templates/${template}`)
   renderTemplate(templateDir, root)
+
+  console.log(`\nDone. Now run:\n`)
+  console.log(`  ${bold(green(getCommand(packageManager, 'dev')))}`)
+  console.log()
 }
 
 init().catch((e) => {

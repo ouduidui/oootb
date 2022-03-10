@@ -11,14 +11,18 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node ./index"
+    "dev": "node ./index",
+    "build": "zx ./scripts/build.mjs"
   },
   "bugs": {
     "url": "https://github.com/ouduidui/ou/issues"
   },
   "homepage": "https://github.com/ouduidui/ou#readme",
-  "dependencies": {
+  "devDependencies": {
+    "esbuild": "^0.14.25",
+    "kolorist": "^1.5.1",
     "minimist": "^1.2.5",
-    "prompts": "^2.4.2"
+    "prompts": "^2.4.2",
+    "zx": "^5.2.0"
   }
 }
