@@ -1,6 +1,6 @@
 {
   "name": "@ouduidui/ou",
-  "version": "0.0.1",
+  "version": "0.0.8",
   "description": "a cli for doing something.",
   "keywords": [],
   "license": "MIT",
@@ -16,14 +16,14 @@
     "outfile.cjs",
     "templates"
   ],
-  "author": "",
+  "author": "Dewey <oushihao@163.com> (https://github.com/ouduidui/)",
   "engines": {
     "node": "^14.13.1 || >=16.0.0"
   },
   "scripts": {
     "dev": "node ./index",
     "build": "zx ./scripts/build.mjs",
-    "release": "lerna publish"
+    "release": "pnpm build && npm publish"
   },
   "bugs": {
     "url": "https://github.com/ouduidui/ou/issues"
@@ -31,9 +31,8 @@
   "homepage": "https://github.com/ouduidui/ou#readme",
   "devDependencies": {
     "esbuild": "^0.14.25",
-    "kolorist": "^1.5.1",
-    "lerna": "^4.0.0",
     "minimist": "^1.2.5",
+    "pnpm": "^6.32.3",
     "prompts": "^2.4.2",
     "zx": "^5.2.0"
   }

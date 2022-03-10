@@ -2,15 +2,15 @@ lockfileVersion: 5.3
 
 specifiers:
   esbuild: ^0.14.25
-  kolorist: ^1.5.1
   minimist: ^1.2.5
+  pnpm: ^6.32.3
   prompts: ^2.4.2
   zx: ^5.2.0
 
 devDependencies:
   esbuild: 0.14.25
-  kolorist: 1.5.1
   minimist: 1.2.5
+  pnpm: 6.32.3
   prompts: 2.4.2
   zx: 5.2.0
 
@@ -412,10 +412,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /kolorist/1.5.1:
-    resolution: {integrity: sha512-lxpCM3HTvquGxKGzHeknB/sUjuVoUElLlfYnXZT73K8geR9jQbroGlSCFBax9/0mpGoD3kzcMLnOlGQPJJNyqQ==}
-    dev: true
-
   /map-stream/0.1.0:
     resolution: {integrity: sha1-5WqpTEyAVaFkBKBnS3jyFffI4ZQ=}
     dev: true
@@ -465,6 +461,12 @@ packages:
   /picomatch/2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
+    dev: true
+
+  /pnpm/6.32.3:
+    resolution: {integrity: sha512-lMQgROSwiUA+kt+suAPinjNwqevS1Iz0rppWNZ3jHhzeP07RFRQ+Ksai2OlAnM+YjlbHT9niQ4ICBVSqcdQ04w==}
+    engines: {node: '>=12.17'}
+    hasBin: true
     dev: true
 
   /prompts/2.4.2:

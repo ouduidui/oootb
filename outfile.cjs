@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -5336,7 +5337,7 @@ var init = async () => {
   const cwd = process.cwd();
   const argv = (0, import_minimist.default)(process.argv.slice(2), { boolean: true });
   let targetDir;
-  let result = {};
+  let result = null;
   try {
     result = await (0, import_prompts.default)([
       {
@@ -5380,6 +5381,8 @@ var init = async () => {
     console.log(cancelled.message);
     process.exit(1);
   }
+  if (!result)
+    process.exit(1);
   const { projectName, packageName, shouldCreateNewDir, shouldOverwrite = false, template } = result;
   const root = shouldCreateNewDir ? import_path3.default.join(cwd, projectName) : cwd;
   if (shouldCreateNewDir) {
@@ -5394,12 +5397,11 @@ var init = async () => {
 Scaffolding project in ${root}...`);
   const pkg = { name: packageName, version: "0.0.0" };
   import_fs3.default.writeFileSync(import_path3.default.resolve(root, "package.json"), JSON.stringify(pkg, null, 2));
-  const templateDir = import_path3.default.join(cwd, `./templates/${template}`);
+  const templateDir = import_path3.default.join(__dirname, `./templates/${template}`);
   renderTemplate(templateDir, root);
   console.log(`
-Done. Now run:
+Done.
 `);
-  console.log(`  ${bold(green(getCommand(packageManager, "dev")))}`);
   console.log();
 };
 init().catch((e) => {
