@@ -2,23 +2,22 @@
   "name": "ou",
   "version": "1.0.0",
   "description": "a cli for doing something.",
-  "main": "index.js",
-  "scripts": {
-    "dev": "node ./index"
-  },
+  "keywords": [],
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ouduidui/ou.git"
   },
-  "keywords": [],
   "author": "",
-  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node ./index"
+  },
   "bugs": {
     "url": "https://github.com/ouduidui/ou/issues"
   },
   "homepage": "https://github.com/ouduidui/ou#readme",
   "dependencies": {
-    "fs-extra": "^10.0.1",
     "minimist": "^1.2.5",
     "prompts": "^2.4.2"
   }

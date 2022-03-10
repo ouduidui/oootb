@@ -1,26 +1,22 @@
-const minimist = require('minimist');
-const prompts = require('prompts');
-const path = require('path');
-const fs = require('fs');
-const {
-  canSafelyOverwrite,
-  isValidPackageName,
-  toValidPackageName,
-  emptyDir,
-} = require('./utils/helpers');
-const { templateChoices } = require('./utils/templateOptions');
+const path = require('path')
+const fs = require('fs')
+const minimist = require('minimist')
+const prompts = require('prompts')
+const { canSafelyOverwrite, isValidPackageName, toValidPackageName, emptyDir } = require('./utils/helpers')
+const { templateChoices } = require('./utils/templateOptions')
+const { renderTemplate } = require('./utils/renderTemplate')
 
-const defaultProjectName = 'ou-app';
+const defaultProjectName = 'ou-app'
 
 const init = async () => {
-  console.log('init');
+  console.log('init')
 
-  const cwd = process.cwd();
+  const cwd = process.cwd()
 
-  const argv = minimist(process.argv.slice(2), { boolean: true });
+  const argv = minimist(process.argv.slice(2), { boolean: true })
 
-  let targetDir;
-  let result = {};
+  let targetDir
+  let result = {}
   try {
     // Prompts:
     // - Project name:
@@ -33,16 +29,14 @@ const init = async () => {
         type: 'text',
         message: 'Project name:',
         initial: defaultProjectName,
-        onState: (state) =>
-          (targetDir = String(state.value).trim() || defaultProjectName),
+        onState: (state) => (targetDir = String(state.value).trim() || defaultProjectName),
       },
       {
         name: 'packageName',
         type: () => (isValidPackageName(targetDir) ? null : 'text'),
         message: 'Package name:',
         initial: () => toValidPackageName(targetDir),
-        validate: (dir) =>
-          isValidPackageName(dir) || 'Invalid package.json name',
+        validate: (dir) => isValidPackageName(dir) || 'Invalid package.json name',
       },
       {
         name: 'shouldCreateNewDir',
@@ -54,17 +48,11 @@ const init = async () => {
       },
       {
         name: 'shouldOverwrite',
-        type: (shouldCreateNewDir) =>
-          !shouldCreateNewDir || canSafelyOverwrite(targetDir)
-            ? null
-            : 'confirm',
+        type: (shouldCreateNewDir) => (!shouldCreateNewDir || canSafelyOverwrite(targetDir) ? null : 'confirm'),
         message: () => {
-          const dirForPrompt =
-            targetDir === '.'
-              ? 'Current directory'
-              : `Target directory "${targetDir}"`;
+          const dirForPrompt = targetDir === '.' ? 'Current directory' : `Target directory "${targetDir}"`
 
-          return `${dirForPrompt} is not empty. Remove existing files and continue?`;
+          return `${dirForPrompt} is not empty. Remove existing files and continue?`
         },
       },
       {
@@ -73,39 +61,31 @@ const init = async () => {
         choices: templateChoices,
         message: 'Choose a template:',
       },
-    ]);
+    ])
   } catch (cancelled) {
-    console.log(cancelled.message);
-    process.exit(1);
+    console.log(cancelled.message)
+    process.exit(1)
   }
 
-  const {
-    projectName,
-    packageName,
-    shouldCreateNewDir,
-    shouldOverwrite = false,
-    template,
-  } = result;
+  const { projectName, packageName, shouldCreateNewDir, shouldOverwrite = false, template } = result
 
-  const root = shouldCreateNewDir ? path.join(cwd, projectName) : cwd;
+  const root = shouldCreateNewDir ? path.join(cwd, projectName) : cwd
 
   if (shouldCreateNewDir) {
-    if (fs.existsSync(root) && shouldOverwrite) {
-      emptyDir(root);
-    } else if (!fs.existsSync(root)) {
-      fs.mkdirSync(root);
-    }
+    if (fs.existsSync(root) && shouldOverwrite) emptyDir(root)
+    else if (fs.existsSync(root)) process.exit(1)
+    else fs.mkdirSync(root)
   }
 
-  console.log(`\nScaffolding project in ${root}...`);
+  console.log(`\nScaffolding project in ${root}...`)
 
-  const pkg = { name: packageName, version: '0.0.0' };
-  fs.writeFileSync(
-    path.resolve(root, 'package.json'),
-    JSON.stringify(pkg, null, 2)
-  );
-};
+  const pkg = { name: packageName, version: '0.0.0' }
+  fs.writeFileSync(path.resolve(root, 'package.json'), JSON.stringify(pkg, null, 2))
+
+  const templateDir = path.join(cwd, `./templates/${template}`)
+  renderTemplate(templateDir, root)
+}
 
 init().catch((e) => {
-  console.error(e);
-});
+  console.error(e)
+})
