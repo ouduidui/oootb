@@ -1,5 +1,6 @@
 import path from 'path'
 import fs from 'fs'
+import { deepMerge, sortDependencies } from './helpers.js'
 
 export const renderTemplate = (src, dest) => {
   const stat = fs.statSync(src)
@@ -17,8 +18,10 @@ export const renderTemplate = (src, dest) => {
   const filename = path.basename(src)
 
   if (filename === 'package.json' && fs.existsSync(dest)) {
-    // TODO merge
-
+    const existing = JSON.parse(fs.readFileSync(dest))
+    const newPackage = JSON.parse(fs.readFileSync(src))
+    const pkg = sortDependencies(deepMerge(newPackage, existing))
+    fs.writeFileSync(dest, JSON.stringify(pkg, null, 2) + '\n')
     return
   }
 

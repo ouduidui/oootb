@@ -3,20 +3,15 @@
 
 import path from 'path'
 import fs from 'fs'
-import minimist from 'minimist'
 import prompts from 'prompts'
-import { canSafelyOverwrite, isValidPackageName, toValidPackageName, emptyDir } from './utils/helpers'
-import { templateChoices } from './utils/templateOptions'
-import { renderTemplate } from './utils/renderTemplate'
+import { canSafelyOverwrite, isValidPackageName, toValidPackageName, emptyDir } from './utils/helpers.js'
+import { templateChoices } from './utils/templateOptions.js'
+import { renderTemplate } from './utils/renderTemplate.js'
 
 const defaultProjectName = 'ou-app'
 
 const init = async () => {
-  console.log('init')
-
   const cwd = process.cwd()
-
-  const argv = minimist(process.argv.slice(2), { boolean: true })
 
   let targetDir
   let result = null
@@ -45,13 +40,16 @@ const init = async () => {
         name: 'shouldCreateNewDir',
         type: 'toggle',
         message: 'Should create new directory:',
-        initial: false,
+        initial: true,
         active: 'Yes',
         inactive: 'No',
       },
       {
         name: 'shouldOverwrite',
-        type: (shouldCreateNewDir) => (!shouldCreateNewDir || canSafelyOverwrite(targetDir) ? null : 'confirm'),
+        type: (shouldCreateNewDir) => (!shouldCreateNewDir || canSafelyOverwrite(targetDir) ? null : 'toggle'),
+        initial: true,
+        active: 'Yes',
+        inactive: 'No',
         message: () => {
           const dirForPrompt = targetDir === '.' ? 'Current directory' : `Target directory "${targetDir}"`
 
@@ -72,7 +70,7 @@ const init = async () => {
 
   if (!result) process.exit(1)
 
-  const { projectName, packageName, shouldCreateNewDir, shouldOverwrite = false, template } = result
+  const { projectName, packageName = toValidPackageName(targetDir), shouldCreateNewDir, shouldOverwrite = false, template } = result
 
   const root = shouldCreateNewDir ? path.join(cwd, projectName) : cwd
 
@@ -86,6 +84,8 @@ const init = async () => {
 
   const pkg = { name: packageName, version: '0.0.0' }
   fs.writeFileSync(path.resolve(root, 'package.json'), JSON.stringify(pkg, null, 2))
+
+  const __dirname = path.resolve()
 
   const templateDir = path.join(__dirname, `./templates/${template}`)
   renderTemplate(templateDir, root)

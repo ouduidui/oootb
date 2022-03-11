@@ -35,208 +35,6 @@ var __toESM = (module2, isNodeMode) => {
   return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", !isNodeMode && module2 && module2.__esModule ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
 };
 
-// node_modules/.pnpm/minimist@1.2.5/node_modules/minimist/index.js
-var require_minimist = __commonJS({
-  "node_modules/.pnpm/minimist@1.2.5/node_modules/minimist/index.js"(exports, module2) {
-    module2.exports = function(args, opts) {
-      if (!opts)
-        opts = {};
-      var flags = { bools: {}, strings: {}, unknownFn: null };
-      if (typeof opts["unknown"] === "function") {
-        flags.unknownFn = opts["unknown"];
-      }
-      if (typeof opts["boolean"] === "boolean" && opts["boolean"]) {
-        flags.allBools = true;
-      } else {
-        [].concat(opts["boolean"]).filter(Boolean).forEach(function(key2) {
-          flags.bools[key2] = true;
-        });
-      }
-      var aliases = {};
-      Object.keys(opts.alias || {}).forEach(function(key2) {
-        aliases[key2] = [].concat(opts.alias[key2]);
-        aliases[key2].forEach(function(x) {
-          aliases[x] = [key2].concat(aliases[key2].filter(function(y) {
-            return x !== y;
-          }));
-        });
-      });
-      [].concat(opts.string).filter(Boolean).forEach(function(key2) {
-        flags.strings[key2] = true;
-        if (aliases[key2]) {
-          flags.strings[aliases[key2]] = true;
-        }
-      });
-      var defaults = opts["default"] || {};
-      var argv = { _: [] };
-      Object.keys(flags.bools).forEach(function(key2) {
-        setArg(key2, defaults[key2] === void 0 ? false : defaults[key2]);
-      });
-      var notFlags = [];
-      if (args.indexOf("--") !== -1) {
-        notFlags = args.slice(args.indexOf("--") + 1);
-        args = args.slice(0, args.indexOf("--"));
-      }
-      function argDefined(key2, arg2) {
-        return flags.allBools && /^--[^=]+$/.test(arg2) || flags.strings[key2] || flags.bools[key2] || aliases[key2];
-      }
-      function setArg(key2, val, arg2) {
-        if (arg2 && flags.unknownFn && !argDefined(key2, arg2)) {
-          if (flags.unknownFn(arg2) === false)
-            return;
-        }
-        var value2 = !flags.strings[key2] && isNumber(val) ? Number(val) : val;
-        setKey(argv, key2.split("."), value2);
-        (aliases[key2] || []).forEach(function(x) {
-          setKey(argv, x.split("."), value2);
-        });
-      }
-      function setKey(obj, keys, value2) {
-        var o = obj;
-        for (var i2 = 0; i2 < keys.length - 1; i2++) {
-          var key2 = keys[i2];
-          if (key2 === "__proto__")
-            return;
-          if (o[key2] === void 0)
-            o[key2] = {};
-          if (o[key2] === Object.prototype || o[key2] === Number.prototype || o[key2] === String.prototype)
-            o[key2] = {};
-          if (o[key2] === Array.prototype)
-            o[key2] = [];
-          o = o[key2];
-        }
-        var key2 = keys[keys.length - 1];
-        if (key2 === "__proto__")
-          return;
-        if (o === Object.prototype || o === Number.prototype || o === String.prototype)
-          o = {};
-        if (o === Array.prototype)
-          o = [];
-        if (o[key2] === void 0 || flags.bools[key2] || typeof o[key2] === "boolean") {
-          o[key2] = value2;
-        } else if (Array.isArray(o[key2])) {
-          o[key2].push(value2);
-        } else {
-          o[key2] = [o[key2], value2];
-        }
-      }
-      function aliasIsBoolean(key2) {
-        return aliases[key2].some(function(x) {
-          return flags.bools[x];
-        });
-      }
-      for (var i = 0; i < args.length; i++) {
-        var arg = args[i];
-        if (/^--.+=/.test(arg)) {
-          var m = arg.match(/^--([^=]+)=([\s\S]*)$/);
-          var key = m[1];
-          var value = m[2];
-          if (flags.bools[key]) {
-            value = value !== "false";
-          }
-          setArg(key, value, arg);
-        } else if (/^--no-.+/.test(arg)) {
-          var key = arg.match(/^--no-(.+)/)[1];
-          setArg(key, false, arg);
-        } else if (/^--.+/.test(arg)) {
-          var key = arg.match(/^--(.+)/)[1];
-          var next = args[i + 1];
-          if (next !== void 0 && !/^-/.test(next) && !flags.bools[key] && !flags.allBools && (aliases[key] ? !aliasIsBoolean(key) : true)) {
-            setArg(key, next, arg);
-            i++;
-          } else if (/^(true|false)$/.test(next)) {
-            setArg(key, next === "true", arg);
-            i++;
-          } else {
-            setArg(key, flags.strings[key] ? "" : true, arg);
-          }
-        } else if (/^-[^-]+/.test(arg)) {
-          var letters = arg.slice(1, -1).split("");
-          var broken = false;
-          for (var j = 0; j < letters.length; j++) {
-            var next = arg.slice(j + 2);
-            if (next === "-") {
-              setArg(letters[j], next, arg);
-              continue;
-            }
-            if (/[A-Za-z]/.test(letters[j]) && /=/.test(next)) {
-              setArg(letters[j], next.split("=")[1], arg);
-              broken = true;
-              break;
-            }
-            if (/[A-Za-z]/.test(letters[j]) && /-?\d+(\.\d*)?(e-?\d+)?$/.test(next)) {
-              setArg(letters[j], next, arg);
-              broken = true;
-              break;
-            }
-            if (letters[j + 1] && letters[j + 1].match(/\W/)) {
-              setArg(letters[j], arg.slice(j + 2), arg);
-              broken = true;
-              break;
-            } else {
-              setArg(letters[j], flags.strings[letters[j]] ? "" : true, arg);
-            }
-          }
-          var key = arg.slice(-1)[0];
-          if (!broken && key !== "-") {
-            if (args[i + 1] && !/^(-|--)[^-]/.test(args[i + 1]) && !flags.bools[key] && (aliases[key] ? !aliasIsBoolean(key) : true)) {
-              setArg(key, args[i + 1], arg);
-              i++;
-            } else if (args[i + 1] && /^(true|false)$/.test(args[i + 1])) {
-              setArg(key, args[i + 1] === "true", arg);
-              i++;
-            } else {
-              setArg(key, flags.strings[key] ? "" : true, arg);
-            }
-          }
-        } else {
-          if (!flags.unknownFn || flags.unknownFn(arg) !== false) {
-            argv._.push(flags.strings["_"] || !isNumber(arg) ? arg : Number(arg));
-          }
-          if (opts.stopEarly) {
-            argv._.push.apply(argv._, args.slice(i + 1));
-            break;
-          }
-        }
-      }
-      Object.keys(defaults).forEach(function(key2) {
-        if (!hasKey(argv, key2.split("."))) {
-          setKey(argv, key2.split("."), defaults[key2]);
-          (aliases[key2] || []).forEach(function(x) {
-            setKey(argv, x.split("."), defaults[key2]);
-          });
-        }
-      });
-      if (opts["--"]) {
-        argv["--"] = new Array();
-        notFlags.forEach(function(key2) {
-          argv["--"].push(key2);
-        });
-      } else {
-        notFlags.forEach(function(key2) {
-          argv._.push(key2);
-        });
-      }
-      return argv;
-    };
-    function hasKey(obj, keys) {
-      var o = obj;
-      keys.slice(0, -1).forEach(function(key2) {
-        o = o[key2] || {};
-      });
-      var key = keys[keys.length - 1];
-      return key in o;
-    }
-    function isNumber(x) {
-      if (typeof x === "number")
-        return true;
-      if (/^0x[0-9a-f]+$/i.test(x))
-        return true;
-      return /^[-+]?(?:\d+(?:\.\d*)?|\.\d+)(e[-+]?\d+)?$/.test(x);
-    }
-  }
-});
-
 // node_modules/.pnpm/kleur@3.0.3/node_modules/kleur/index.js
 var require_kleur = __commonJS({
   "node_modules/.pnpm/kleur@3.0.3/node_modules/kleur/index.js"(exports, module2) {
@@ -5271,7 +5069,6 @@ var require_prompts3 = __commonJS({
 // index.js
 var import_path3 = __toESM(require("path"), 1);
 var import_fs3 = __toESM(require("fs"), 1);
-var import_minimist = __toESM(require_minimist(), 1);
 var import_prompts = __toESM(require_prompts3(), 1);
 
 // utils/helpers.js
@@ -5296,6 +5093,35 @@ function postOrderDirectoryTraverse(dir, dirCallback, fileCallback) {
     fileCallback(fullPath);
   }
 }
+var sortDependencies = (packageJson) => {
+  const sorted = {};
+  const depTypes = ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"];
+  for (const depType of depTypes) {
+    if (packageJson[depType]) {
+      sorted[depType] = {};
+      Object.keys(packageJson[depType]).sort().forEach((name) => {
+        sorted[depType][name] = packageJson[depType][name];
+      });
+    }
+  }
+  return __spreadValues(__spreadValues({}, packageJson), sorted);
+};
+var isObject = (val) => val && typeof val === "object";
+var mergeArrayWithDedupe = (a, b) => Array.from(/* @__PURE__ */ new Set([...a, ...b]));
+var deepMerge = (target, obj) => {
+  for (const key of Object.keys(obj)) {
+    const oldVal = target[key];
+    const newVal = obj[key];
+    if (Array.isArray(oldVal) && Array.isArray(newVal)) {
+      target[key] = mergeArrayWithDedupe(oldVal, newVal);
+    } else if (isObject(oldVal) && isObject(newVal)) {
+      target[key] = deepMerge(oldVal, newVal);
+    } else {
+      target[key] = newVal;
+    }
+  }
+  return target;
+};
 
 // utils/templateOptions.js
 var templateOptions = [
@@ -5320,6 +5146,10 @@ var renderTemplate = (src, dest) => {
   }
   const filename = import_path2.default.basename(src);
   if (filename === "package.json" && import_fs2.default.existsSync(dest)) {
+    const existing = JSON.parse(import_fs2.default.readFileSync(dest));
+    const newPackage = JSON.parse(import_fs2.default.readFileSync(src));
+    const pkg = sortDependencies(deepMerge(newPackage, existing));
+    import_fs2.default.writeFileSync(dest, JSON.stringify(pkg, null, 2) + "\n");
     return;
   }
   if (/^\./.test(filename))
@@ -5333,9 +5163,7 @@ var renderTemplate = (src, dest) => {
 // index.js
 var defaultProjectName = "ou-app";
 var init = async () => {
-  console.log("init");
   const cwd = process.cwd();
-  const argv = (0, import_minimist.default)(process.argv.slice(2), { boolean: true });
   let targetDir;
   let result = null;
   try {
@@ -5358,13 +5186,16 @@ var init = async () => {
         name: "shouldCreateNewDir",
         type: "toggle",
         message: "Should create new directory:",
-        initial: false,
+        initial: true,
         active: "Yes",
         inactive: "No"
       },
       {
         name: "shouldOverwrite",
-        type: (shouldCreateNewDir2) => !shouldCreateNewDir2 || canSafelyOverwrite(targetDir) ? null : "confirm",
+        type: (shouldCreateNewDir2) => !shouldCreateNewDir2 || canSafelyOverwrite(targetDir) ? null : "toggle",
+        initial: true,
+        active: "Yes",
+        inactive: "No",
         message: () => {
           const dirForPrompt = targetDir === "." ? "Current directory" : `Target directory "${targetDir}"`;
           return `${dirForPrompt} is not empty. Remove existing files and continue?`;
@@ -5383,7 +5214,7 @@ var init = async () => {
   }
   if (!result)
     process.exit(1);
-  const { projectName, packageName, shouldCreateNewDir, shouldOverwrite = false, template } = result;
+  const { projectName, packageName = toValidPackageName(targetDir), shouldCreateNewDir, shouldOverwrite = false, template } = result;
   const root = shouldCreateNewDir ? import_path3.default.join(cwd, projectName) : cwd;
   if (shouldCreateNewDir) {
     if (import_fs3.default.existsSync(root) && shouldOverwrite)
@@ -5397,6 +5228,7 @@ var init = async () => {
 Scaffolding project in ${root}...`);
   const pkg = { name: packageName, version: "0.0.0" };
   import_fs3.default.writeFileSync(import_path3.default.resolve(root, "package.json"), JSON.stringify(pkg, null, 2));
+  const __dirname = import_path3.default.resolve();
   const templateDir = import_path3.default.join(__dirname, `./templates/${template}`);
   renderTemplate(templateDir, root);
   console.log(`
