@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`HelloWorld.vue > should render 1`] = `
+"<div>
+  <p text=\\"\\" op75=\\"\\"> Count: 10</p><button m-3=\\"\\" text-sm=\\"\\" btn=\\"\\" bg-blue=\\"\\" class=\\"inc\\"> Add </button>
+</div>"
+`;
