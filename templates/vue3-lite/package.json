@@ -2,12 +2,13 @@
   "name": "vue3-lite",
   "version": "0.0.0",
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "dev": "vite",
     "test": "vitest",
     "format": "eslint \"**/*.{vue,ts,js}\" --fix",
     "lint": "eslint \"**/*.{vue,ts,js}\"",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@vueuse/core": "^7.7.0",
