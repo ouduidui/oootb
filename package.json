@@ -1,7 +1,7 @@
 {
   "name": "@ouduidui/ou",
-  "version": "0.0.10-beta.2",
-  "description": "a cli for doing something.",
+  "version": "0.0.10-beta.3",
+  "description": "a cli for creating an app template of initialized.",
   "keywords": [],
   "license": "MIT",
   "repository": {
