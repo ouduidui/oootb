@@ -1,6 +1,6 @@
 export const templateOptions = [
   // { id: 'NODE', label: 'node-ts-template' },
-  // { id: 'VUE3', label: 'vue3-template' },
+  { id: 'VUE3', label: 'vue3-template' },
   { id: 'vue3-lite', label: 'vue3-lite-template  (without router and store)' },
   // { id: 'REACT', label: 'react-template' },
   // { id: 'REACT_LITE', label: 'react-lite-template' },

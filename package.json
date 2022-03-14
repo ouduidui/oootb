@@ -23,7 +23,7 @@
   "scripts": {
     "dev": "node ./index",
     "build": "zx ./scripts/build.mjs",
-    "release": "pnpm build && npm publish"
+    "release": "npm run build && npx bumpp --commit --push --tag"
   },
   "bugs": {
     "url": "https://github.com/ouduidui/ou/issues"
