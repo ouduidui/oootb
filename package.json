@@ -10,7 +10,7 @@
   },
   "type": "module",
   "bin": {
-    "ou": "bin/index.js"
+    "ou": "bin/index.cjs"
   },
   "files": [
     "bin",
