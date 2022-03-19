@@ -8,7 +8,6 @@
     "type": "git",
     "url": "git+https://github.com/ouduidui/ou.git"
   },
-  "type": "module",
   "bin": {
     "ou": "bin/index.cjs"
   },
