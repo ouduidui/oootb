@@ -4,9 +4,9 @@
 import path from 'path'
 import fs from 'fs'
 import prompts from 'prompts'
-import { canSafelyOverwrite, isValidPackageName, toValidPackageName, emptyDir } from './helpers.js'
-import { templateChoices } from './templateOptions.js'
-import { renderTemplate } from './renderTemplate.js'
+import { canSafelyOverwrite, isValidPackageName, toValidPackageName, emptyDir } from './lib/helpers.js'
+import { templateChoices } from './lib/templateOptions.js'
+import { renderTemplate } from './lib/renderTemplate.js'
 
 const defaultProjectName = 'ou-app'
 
@@ -84,8 +84,6 @@ const init = async () => {
 
   const pkg = { name: packageName, version: '0.0.0' }
   fs.writeFileSync(path.resolve(root, 'package.json'), JSON.stringify(pkg, null, 2))
-
-  const __dirname = path.resolve()
 
   const templateDir = path.join(__dirname, `./templates/${template}`)
   renderTemplate(templateDir, root)

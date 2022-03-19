@@ -9,10 +9,10 @@
     "url": "git+https://github.com/ouduidui/ou.git"
   },
   "bin": {
-    "ou": "bin/index.cjs"
+    "ou": "index.cjs"
   },
   "files": [
-    "bin",
+    "index.cjs",
     "templates"
   ],
   "author": "Dewey <oushihao@163.com> (https://github.com/ouduidui/)",
