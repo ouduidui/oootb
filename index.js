@@ -68,7 +68,7 @@ const init = async () => {
     process.exit(1)
   }
 
-  if (!result) process.exit(1)
+  if (!Object.keys(result).length) process.exit(1)
 
   const { projectName, packageName = toValidPackageName(targetDir), shouldCreateNewDir, shouldOverwrite = false, template } = result
 
