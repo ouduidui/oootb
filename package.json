@@ -10,10 +10,10 @@
   },
   "type": "module",
   "bin": {
-    "ou": "outfile.cjs"
+    "ou": "bin/index.js"
   },
   "files": [
-    "outfile.cjs",
+    "bin",
     "templates"
   ],
   "author": "Dewey <oushihao@163.com> (https://github.com/ouduidui/)",
