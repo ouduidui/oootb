@@ -37,6 +37,5 @@
     "vite": "^2.8.4",
     "vite-plugin-pages": "^0.20.2",
     "vitest": "^0.7.11"
-  },
-  "private": true
+  }
 }
