@@ -1,6 +1,14 @@
 {
   "name": "vue3-lite",
   "version": "0.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ouduidui/[name].git"
+  },
+  "author": "Dewey Ou <oushihao97@gmail.com>",
   "scripts": {
     "build": "vite build",
     "dev": "vite",
