@@ -25,19 +25,40 @@ export default defineConfig({
 
     // https://github.com/antfu/vite-plugin-components
     Components({
-      dts: true,
+      // allow auto load markdown components under `./src/components/`
+      extensions: ['vue', 'md'],
+      // allow auto import and register components used in markdown
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      dts: 'src/components.d.ts',
     }),
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: ['vue', 'vue-router', '@vueuse/core'],
-      dts: true,
+      dts: 'src/auto-imports.d.ts',
     }),
   ],
   // https://github.com/vitest-dev/vitest
   test: {
+    include: ['test/**/*.test.ts'],
     environment: 'jsdom',
+    deps: {
+      inline: ['@vue', '@vueuse', 'vue-demi'],
+    },
   },
+
+  optimizeDeps: {
+    include: [
+      'vue',
+      'vue-router',
+      '@vueuse/core',
+      '@vueuse/head',
+    ],
+    exclude: [
+      'vue-demi',
+    ],
+  },
+
   server: {
     host: '0.0.0.0',
   },
