@@ -6,6 +6,7 @@ import { isDark, toggleDark } from '~/composables/dark'
   <nav
     text-xl
     mt-6
+    pb-6
     flex
     algin="center"
     justify="center"

@@ -1,6 +1,8 @@
 <template>
-  <main font-sans p="x-4 y-10" text="center gray-700 dark:gray-200">
-    <HelloWorld :initial="0" />
+  <div flex="~ col" min-h-screen select-none>
+    <main flex-1 container m-auto pt-10>
+      <HelloWorld :initial="0" />
+    </main>
     <Footer />
-  </main>
+  </div>
 </template>

@@ -10,7 +10,7 @@ const addHandler = () => count.value++
 
 <template>
   <div>
-    <p text op75>
+    <p font-sans text="center gray-700 dark:gray-200" op75>
       Count: {{ count }}
     </p>
     <button m-3 text-sm btn bg-blue class="inc" @click="addHandler">
