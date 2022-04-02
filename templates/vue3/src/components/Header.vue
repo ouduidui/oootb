@@ -14,7 +14,6 @@ const navs = [
     algin="center"
     justify="center"
     font-sans
-    mt-10
     gap="4"
     text="gray-700 dark:gray-200"
     cursor-pointer
