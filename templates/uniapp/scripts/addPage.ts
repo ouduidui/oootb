@@ -126,7 +126,7 @@ function updatePagesJson(key: string, title: string, subPackage: string) {
   }
   else {
     localPages.pages.push({
-      path: `/pages/${key}/index`,
+      path: `pages/${key}/index`,
       style: {
         navigationBarTitleText: `${title}`,
       },
