@@ -1,3 +1,0 @@
-// Vitest Snapshot v1
-
-exports[`happy path > hello, world 1`] = `"hello, world"`;
