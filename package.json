@@ -8,15 +8,15 @@
     "type": "git",
     "url": "git+https://github.com/ouduidui/ou.git"
   },
-  "bin": {
-    "ou": "index.cjs"
-  },
+  "author": "Dewey <oushihao@163.com> (https://github.com/ouduidui/)",
+  "type": "module",
   "files": [
     "index.cjs",
     "templates"
   ],
-  "type": "module",
-  "author": "Dewey <oushihao@163.com> (https://github.com/ouduidui/)",
+  "bin": {
+    "ou": "index.cjs"
+  },
   "engines": {
     "node": "^14.13.1 || >=16.0.0"
   },
@@ -31,9 +31,11 @@
   "homepage": "https://github.com/ouduidui/ou#readme",
   "devDependencies": {
     "@ouduidui/eslint-config-basic": "^0.1.1",
+    "commander": "^9.2.0",
+    "degit": "^2.8.4",
     "esbuild": "^0.14.30",
     "eslint": "^8.13.0",
-    "minimist": "^1.2.6",
+    "execa": "^6.1.0",
     "pnpm": "^6.32.4",
     "prompts": "^2.4.2",
     "zx": "^6.0.7"

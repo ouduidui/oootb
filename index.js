@@ -1,95 +1,154 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 // @ts-check
 
 import path from 'path'
 import fs from 'fs'
 import prompts from 'prompts'
-import { canSafelyOverwrite, isValidPackageName, toValidPackageName, emptyDir } from './lib/helpers.js'
-import { templateChoices } from './lib/templateOptions.js'
-import { renderTemplate } from './lib/renderTemplate.js'
+import { Command } from 'commander/esm.mjs'
+import degit from 'degit'
+import { execa } from 'execa'
 
 const defaultProjectName = 'ou-app'
+const templates = [
+  {
+    id: 'vue',
+    name: 'vue3 template',
+    url: 'https://github.com/ouduidui/vue3-template.git',
+  },
+  {
+    id: 'ts',
+    name: 'typescript template',
+    url: 'https://github.com/ouduidui/typescript-template.git',
+  },
+  {
+    id: 'nuxt',
+    name: 'nuxt3 template',
+    url: 'https://github.com/ouduidui/nuxt3-template.git',
+  },
+  {
+    id: 'uniapp',
+    name: 'uniapp v3 template',
+    url: 'https://github.com/ouduidui/uniapp-template.git',
+  },
+]
 
-const init = async () => {
+const canSafelyOverwrite = dir => !fs.existsSync(dir) || fs.readdirSync(dir).length === 0
+
+const getCommandOptions = () => {
+  return new Promise((resolve, reject) => {
+    try {
+      new Command()
+        .argument('[project-name]', 'project name', defaultProjectName)
+        .option('-t, --template <template>', `Choose a template (${templates.map(t => t.id).join('|')})`, 'vue')
+        .option('-r, --root', 'Create in the current directory', false)
+        .option('-f, --force', 'For force overwriting', false)
+        .action((name, opts) => {
+          resolve({ name, opts })
+        }).parse()
+    }
+    catch (err) {
+      reject(err)
+      console.log(err.message)
+    }
+  })
+}
+
+const emptyDir = (dir) => {
+  if (!fs.existsSync(dir)) return
+
+  postOrderDirectoryTraverse(
+    dir,
+    dir => fs.rmdirSync(dir),
+    file => fs.unlinkSync(file),
+  )
+}
+
+function postOrderDirectoryTraverse(dir, dirCallback, fileCallback) {
+  for (const filename of fs.readdirSync(dir)) {
+    const fullPath = path.resolve(dir, filename)
+    if (fs.lstatSync(fullPath).isDirectory()) {
+      postOrderDirectoryTraverse(fullPath, dirCallback, fileCallback)
+      dirCallback(fullPath)
+      continue
+    }
+    fileCallback(fullPath)
+  }
+}
+
+const init = async() => {
   const cwd = process.cwd()
 
-  let targetDir
-  let result = null
-  try {
-    // Prompts:
-    // - Project name:
-    // - Package name:
-    // - Should create new directory:
-    // - Choose a template:
-    result = await prompts([
-      {
-        name: 'projectName',
-        type: 'text',
-        message: 'Project name:',
-        initial: defaultProjectName,
-        onState: (state) => (targetDir = String(state.value).trim() || defaultProjectName),
-      },
-      {
-        name: 'packageName',
-        type: () => (isValidPackageName(targetDir) ? null : 'text'),
-        message: 'Package name:',
-        initial: () => toValidPackageName(targetDir),
-        validate: (dir) => isValidPackageName(dir) || 'Invalid package.json name',
-      },
-      {
-        name: 'shouldCreateNewDir',
-        type: 'toggle',
-        message: 'Should create new directory:',
-        initial: true,
-        active: 'Yes',
-        inactive: 'No',
-      },
-      {
+  const { name, opts } = await getCommandOptions()
+  if (!name || !opts)
+    process.exit(1)
+
+  let template = opts.template && templates.find(t => t.id === opts.template) ? opts.template : ''
+  const root = opts.root
+  let force = opts.force
+
+  // error template
+  if (template === '') {
+    try {
+      const res = await prompts({
+        name: 'template',
+        type: 'select',
+        choices: templates.map(t => ({ title: t.name, value: t.id })),
+        message: 'Choose a template:',
+      })
+      template = res.template
+    }
+    catch (err) {
+      console.log(err.message)
+      process.exit(1)
+    }
+  }
+
+  // cannot safe overwrite
+  if (!force && !canSafelyOverwrite(root ? '.' : name)) {
+    try {
+      const { shouldOverwrite } = await prompts({
         name: 'shouldOverwrite',
-        type: (shouldCreateNewDir) => (!shouldCreateNewDir || canSafelyOverwrite(targetDir) ? null : 'toggle'),
+        type: 'toggle',
         initial: true,
         active: 'Yes',
         inactive: 'No',
         message: () => {
-          const dirForPrompt = targetDir === '.' ? 'Current directory' : `Target directory "${targetDir}"`
-
+          const dirForPrompt = root ? 'Current directory' : `Target directory "${name}"`
           return `${dirForPrompt} is not empty. Remove existing files and continue?`
         },
-      },
-      {
-        name: 'template',
-        type: 'select',
-        choices: templateChoices,
-        message: 'Choose a template:',
-      },
-    ])
-  } catch (cancelled) {
-    console.log(cancelled.message)
-    process.exit(1)
+      })
+
+      if (shouldOverwrite)
+        force = true
+      else
+        process.exit(1)
+    }
+    catch (err) {
+      console.log(err.message)
+      process.exit(1)
+    }
   }
 
-  if (!result.template) process.exit(1)
+  const dir = root ? cwd : path.join(cwd, name)
 
-  const { projectName, packageName = toValidPackageName(targetDir), shouldCreateNewDir, shouldOverwrite = false, template } = result
-
-  const root = shouldCreateNewDir ? path.join(cwd, projectName) : cwd
-
-  if (shouldCreateNewDir) {
-    if (fs.existsSync(root) && shouldOverwrite) emptyDir(root)
-    else if (fs.existsSync(root)) process.exit(1)
-    else fs.mkdirSync(root)
+  if (!root) {
+    if (fs.existsSync(dir) && force) { emptyDir(dir) }
+    else if (fs.existsSync(dir) && !force) {
+      console.log(`Directory "${dir}" already exists.`)
+      process.exit(1)
+    }
+    else {
+      fs.mkdirSync(dir)
+    }
   }
 
-  console.log(`\nScaffolding project in ${root}...`)
+  console.log(`\nScaffolding project in ${dir}...`)
 
-  const pkg = { name: packageName, version: '0.0.0' }
-  fs.writeFileSync(path.resolve(root, 'package.json'), JSON.stringify(pkg, null, 2))
-
-  const templateDir = path.join(__dirname, `./templates/${template}`)
-  renderTemplate(templateDir, root)
-
-  console.log(`\nDone.\n`)
-  console.log()
+  const temp = templates.find(t => t.id === template)
+  console.log(dir, temp)
+  await execa('cd', [dir], { stdout: 'inherit' })
+  await execa('npx', ['degit', temp.url], { stdout: 'inherit' })
 }
 
 init().catch((e) => {
