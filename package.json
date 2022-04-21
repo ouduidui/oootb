@@ -27,7 +27,7 @@
   },
   "scripts": {
     "dev": "node ./index",
-    "build": "zx ./scripts/build.mjs",
+    "build": "zx ./build.mjs",
     "release": "npm run build && npx bumpp --commit --push --tag"
   },
   "bugs": {
