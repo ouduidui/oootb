@@ -7,29 +7,28 @@ import fs from 'fs'
 import prompts from 'prompts'
 import { Command } from 'commander/esm.mjs'
 import degit from 'degit'
-import { execa } from 'execa'
 
 const defaultProjectName = 'ou-app'
 const templates = [
   {
     id: 'vue',
     name: 'vue3 template',
-    url: 'https://github.com/ouduidui/vue3-template.git',
+    url: 'ouduidui/vue3-template',
   },
   {
     id: 'ts',
     name: 'typescript template',
-    url: 'https://github.com/ouduidui/typescript-template.git',
+    url: 'ouduidui/typescript-template',
   },
   {
     id: 'nuxt',
     name: 'nuxt3 template',
-    url: 'https://github.com/ouduidui/nuxt3-template.git',
+    url: 'ouduidui/nuxt3-template',
   },
   {
     id: 'uniapp',
     name: 'uniapp v3 template',
-    url: 'https://github.com/ouduidui/uniapp-template.git',
+    url: 'ouduidui/uniapp-template',
   },
 ]
 
@@ -147,8 +146,11 @@ const init = async() => {
 
   const temp = templates.find(t => t.id === template)
   console.log(dir, temp)
-  await execa('cd', [dir], { stdout: 'inherit' })
-  await execa('npx', ['degit', temp.url], { stdout: 'inherit' })
+  const emitter = degit(temp.url, {
+    force: true,
+  })
+  emitter.on('warn', err => console.log(err))
+  emitter.clone(dir).then(() => console.log('done'))
 }
 
 init().catch((e) => {
