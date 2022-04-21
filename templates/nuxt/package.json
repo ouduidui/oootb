@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "@vueuse/core": "^8.3.0",
+    "pinia": "^2.0.13"
+  },
+  "devDependencies": {
+    "@iconify-json/carbon": "^1.1.3",
+    "@ouduidui/eslint-config-vue": "^0.1.1",
+    "@pinia/nuxt": "^0.1.8",
+    "@unocss/nuxt": "^0.31.8",
+    "@unocss/reset": "^0.31.12",
+    "@vueuse/nuxt": "^8.3.0",
+    "eslint": "^8.13.0",
+    "nuxt": "3.0.0-rc.1",
+    "typescript": "^4.6.3"
+  }
+}

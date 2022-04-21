@@ -33,7 +33,6 @@
     "@unocss/reset": "^0.31.3",
     "@vitejs/plugin-vue": "^2.3.1",
     "@vue/test-utils": "^2.0.0-rc.20",
-    "@vueuse/head": "^0.7.6",
     "cypress": "^9.5.4",
     "eslint": "^8.13.0",
     "eslint-plugin-cypress": "^2.12.1",
