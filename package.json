@@ -11,8 +11,7 @@
   "author": "Dewey Ou <oushihao@gmail.com> (https://github.com/ouduidui/)",
   "type": "module",
   "files": [
-    "index.cjs",
-    "templates"
+    "index.cjs"
   ],
   "bin": {
     "ou": "index.cjs"
