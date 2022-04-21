@@ -145,7 +145,6 @@ const init = async() => {
   console.log(`\nScaffolding project in ${dir}...`)
 
   const temp = templates.find(t => t.id === template)
-  console.log(dir, temp)
   const emitter = degit(temp.url, {
     force: true,
   })
