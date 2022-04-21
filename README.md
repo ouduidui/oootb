@@ -8,7 +8,6 @@
 <a href="https://www.npmjs.com/package/@ouduidui/ou"><img src="https://img.shields.io/npm/v/@ouduidui/ou?label=" alt="NPM version"></a></p>
 
 <br>
-<br>
 
 <h2 align="center"><samp>Templates</samp></h2>
 
@@ -16,7 +15,6 @@
   <samp> <a href="https://github.com/ouduidui/vue3-template/blob/main/README.md">Vue3</a> | <a href="https://github.com/ouduidui/typescript-template/blob/main/README.md">TypeScript</a> | <a href="https://github.com/ouduidui/nuxt3-template/blob/main/README.md">Nuxt3</a> | <a href="https://github.com/ouduidui/uniapp-template/blob/main/README.md">UniApp</a></samp>
 </p>
 
-<br>
 <br>
 
 <h2 align="center"><samp>Usage</samp></h2>
@@ -26,8 +24,6 @@
 </p>
 
 <br>
-<br>
-
 
 <h2 align="center"><samp>License</samp></h2>
 
