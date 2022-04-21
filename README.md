@@ -7,27 +7,30 @@
 <p align="center">
 <a href="https://www.npmjs.com/package/@ouduidui/ou"><img src="https://img.shields.io/npm/v/@ouduidui/ou?label=" alt="NPM version"></a></p>
 
-## Templates
+<br>
+<br>
 
-**Vue3 Lite Template**
-  - Used for some simple web app
-  - Vue3 + Vite + TypeScript + UnoCss + Eslint + Vitest
+<h2 align="center"><samp>Templates</samp></h2>
 
-**Vue3 Template**
-  - Used for some complex web app
-  - Vue3 Lite + VueRouter + Pinia + TypeScript + Cypress
+<p align="center">
+  <samp> <a href="https://github.com/ouduidui/vue3-template/blob/main/README.md">Vue3</a> | <a href="https://github.com/ouduidui/typescript-template/blob/main/README.md">TypeScript</a> | <a href="https://github.com/ouduidui/nuxt3-template/blob/main/README.md">Nuxt3</a> | <a href="https://github.com/ouduidui/uniapp-template/blob/main/README.md">UniApp</a></samp>
+</p>
 
-**TypeScript Lite**
-  - Used for the development of simple modules.
-  - TypeScript + Tsup + Eslint + Vitest + Bummp
+<br>
+<br>
 
-## Usage
+<h2 align="center"><samp>Usage</samp></h2>
 
-```bash
-# install
-npx @ouduidui/ou
-```
+<p align="center">
+  <code>npx @ouduidui/ou</code>
+</p>
 
-## License
+<br>
+<br>
 
-[MIT](./LICENSE) License © 2022 [Dewey Ou](https://github.com/ouduidui)
+
+<h2 align="center"><samp>License</samp></h2>
+
+<p align="center">
+  <samp><a href="./LICENSE">MIT</a> License © 2022 <a href="https://github.com/ouduidui">Dewey Ou</a></samp>
+</p>
