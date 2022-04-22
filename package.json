@@ -1,6 +1,6 @@
 {
   "name": "@ouduidui/ou",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Used for creating a out-of-the-box template without additional configuration.",
   "keywords": [
     "create-app",
