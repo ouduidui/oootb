@@ -34,7 +34,7 @@ Arguments:
   project-name               project name (default: "ou-app")
 
 Options:
-  -t, --template <template>  choose a template (vue|ts|nuxt|uniapp) (default: "vue")
+  -t, --template <template>  choose a template (vue|ts|nuxt|uniapp) 
   -r, --root                 create in the current directory (default: false)
   -f, --force                for force overwriting (default: false)
   -h, --help                 display help for command
