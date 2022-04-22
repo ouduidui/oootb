@@ -39,9 +39,9 @@ const getCommandOptions = () => {
     try {
       new Command()
         .argument('[project-name]', 'project name', defaultProjectName)
-        .option('-t, --template <template>', `Choose a template (${templates.map(t => t.id).join('|')})`, 'vue')
-        .option('-r, --root', 'Create in the current directory', false)
-        .option('-f, --force', 'For force overwriting', false)
+        .option('-t, --template <template>', `choose a template (${templates.map(t => t.id).join('|')})`)
+        .option('-r, --root', 'create in the current directory', false)
+        .option('-f, --force', 'for force overwriting', false)
         .action((name, opts) => {
           resolve({ name, opts })
         }).parse()
@@ -100,6 +100,10 @@ const init = async() => {
     catch (err) {
       console.log(err.message)
       process.exit(1)
+    }
+    finally {
+      if (!template)
+        process.exit(1)
     }
   }
 
