@@ -25,6 +25,23 @@
 
 <br>
 
+<h2 align="center"><samp>Options</samp></h2>
+
+```
+Usage: ou [project-name] [options] 
+
+Arguments:
+  project-name               project name (default: "ou-app")
+
+Options:
+  -t, --template <template>  choose a template (vue|ts|nuxt|uniapp) (default: "vue")
+  -r, --root                 create in the current directory (default: false)
+  -f, --force                for force overwriting (default: false)
+  -h, --help                 display help for command
+```
+
+<br>
+
 <h2 align="center"><samp>License</samp></h2>
 
 <p align="center">
