@@ -12,7 +12,7 @@
 <h2 align="center"><samp>Templates</samp></h2>
 
 <p align="center">
-  <samp> <a href="https://github.com/ouduidui/vue3-template/blob/main/README.md">Vue3</a> | <a href="https://github.com/ouduidui/typescript-template/blob/main/README.md">TypeScript</a> | <a href="https://github.com/ouduidui/nuxt3-template/blob/main/README.md">Nuxt3</a> | <a href="https://github.com/ouduidui/uniapp-template/blob/main/README.md">UniApp</a></samp>
+  <samp> <a href="https://github.com/ouduidui/vue-template/blob/main/README.md">Vue</a> | <a href="https://github.com/ouduidui/react-template/blob/main/README.md">React</a> | <a href="https://github.com/ouduidui/typescript-template/blob/main/README.md">TypeScript</a> | <a href="https://github.com/ouduidui/nuxt-template/blob/main/README.md">Nuxt</a> | <a href="https://github.com/ouduidui/uniapp-template/blob/main/README.md">UniApp</a></samp>
 </p>
 
 <br>

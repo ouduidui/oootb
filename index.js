@@ -12,8 +12,13 @@ const defaultProjectName = 'ou-app'
 const templates = [
   {
     id: 'vue',
-    name: 'vue3 template',
-    url: 'ouduidui/vue3-template',
+    name: 'vue template (vue3 + ts)',
+    url: 'ouduidui/react-template',
+  },
+  {
+    id: 'react',
+    name: 'react template (react18 + ts)',
+    url: 'ouduidui/vue-template',
   },
   {
     id: 'ts',
@@ -22,12 +27,12 @@ const templates = [
   },
   {
     id: 'nuxt',
-    name: 'nuxt3 template',
-    url: 'ouduidui/nuxt3-template',
+    name: 'nuxt template (nuxt3 + ts)',
+    url: 'ouduidui/nuxt-template',
   },
   {
     id: 'uniapp',
-    name: 'uniapp v3 template',
+    name: 'uniapp template (uniapp v3 + ts)',
     url: 'ouduidui/uniapp-template',
   },
 ]
