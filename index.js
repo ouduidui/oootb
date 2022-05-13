@@ -13,12 +13,12 @@ const templates = [
   {
     id: 'vue',
     name: 'vue template (vue3 + ts)',
-    url: 'ouduidui/react-template',
+    url: 'ouduidui/vue-template',
   },
   {
     id: 'react',
     name: 'react template (react18 + ts)',
-    url: 'ouduidui/vue-template',
+    url: 'ouduidui/react-template',
   },
   {
     id: 'ts',
