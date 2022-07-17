@@ -1,11 +1,11 @@
-<h1 align="center"><samp>ou</samp></h1>
+<h1 align="center"><samp>oootb</samp></h1>
 
 <p align="center">
   <samp>Used for creating a out-of-the-box template without additional configuration.</samp>
 </p>
 
 <p align="center">
-<a href="https://www.npmjs.com/package/@ouduidui/ou"><img src="https://img.shields.io/npm/v/@ouduidui/ou?label=" alt="NPM version"></a></p>
+<a href="https://www.npmjs.com/package/@ouduidui/oootb"><img src="https://img.shields.io/npm/v/@ouduidui/oootb?label=" alt="NPM version"></a></p>
 
 <br>
 
@@ -20,7 +20,7 @@
 <h2 align="center"><samp>Usage</samp></h2>
 
 <p align="center">
-  <code>npx @ouduidui/ou</code>
+  <code>npx oootb</code>
 </p>
 
 <br>
@@ -28,7 +28,7 @@
 <h2 align="center"><samp>Options</samp></h2>
 
 ```
-Usage: ou [project-name] [options] 
+Usage: oootb [project-name] [options] 
 
 Arguments:
   project-name               project name (default: "ou-app")

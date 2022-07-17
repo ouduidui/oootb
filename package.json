@@ -1,6 +1,6 @@
 {
-  "name": "@ouduidui/ou",
-  "version": "0.4.0",
+  "name": "oootb",
+  "version": "1.0.0",
   "description": "Used for creating a out-of-the-box template without additional configuration.",
   "keywords": [
     "create-app",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ouduidui/ou.git"
+    "url": "git+https://github.com/ouduidui/oootb.git"
   },
   "author": "Dewey Ou <oushihao@gmail.com> (https://github.com/ouduidui/)",
   "type": "module",
@@ -31,9 +31,9 @@
     "release": "npm run build && npx bumpp --commit --push --tag"
   },
   "bugs": {
-    "url": "https://github.com/ouduidui/ou/issues"
+    "url": "https://github.com/ouduidui/oootb/issues"
   },
-  "homepage": "https://github.com/ouduidui/ou#readme",
+  "homepage": "https://github.com/ouduidui/oootb#readme",
   "devDependencies": {
     "@ouduidui/eslint-config-basic": "^0.1.1",
     "commander": "^9.2.0",
