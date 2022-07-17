@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-<a href="https://www.npmjs.com/package/@ouduidui/oootb"><img src="https://img.shields.io/npm/v/@ouduidui/oootb?label=" alt="NPM version"></a></p>
+<a href="https://www.npmjs.com/package/@ouduidui/oootb"><img src="https://img.shields.io/npm/v/@ouduidui/label=" alt="NPM version"></a></p>
 
 <br>
 
