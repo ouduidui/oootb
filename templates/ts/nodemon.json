@@ -1,0 +1,12 @@
+{
+  "execMap": {
+    "": "node",
+    "js": "node --harmony",
+    "ts": "esmo"
+  },
+  "ext": "js json ts tsx",
+  "watch": ["./**"],
+  "env": {
+    "NODE_ENV": "development"
+  }
+}
