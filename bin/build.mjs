@@ -4,10 +4,11 @@ import * as esbuild from 'esbuild'
   await esbuild.build({
     bundle: true,
     minify: true,
-    entryPoints: ['./index.js'],
-    outfile: './index.cjs',
+    entryPoints: ['./lib/index.ts'],
+    outfile: './dist/index.cjs',
     format: 'cjs',
     platform: 'node',
     target: 'node14',
+    treeShaking: true,
   })
 })()
