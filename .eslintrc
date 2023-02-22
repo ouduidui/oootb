@@ -1,3 +1,5 @@
 {
-   "extends": ["@ouduidui/eslint-config-basic"]
+   "extends": [
+      "@ouduidui/eslint-config-ts"
+   ]
 }

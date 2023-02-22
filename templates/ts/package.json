@@ -1,0 +1,45 @@
+{
+  "name": "module-dev-lite",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ouduidui/[name].git"
+  },
+  "author": "Dewey Ou <oushihao97@gmail.com>",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "homepage": "https://github.com/ouduidui/[name]#readme",
+  "bugs": {
+    "url": "https://github.com/ouduidui/[name]/issues"
+  },
+  "scripts": {
+    "start": "esno src/index.ts",
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "prepublishOnly": "pnpm build",
+    "release": "bumpp --commit --push --tag && pnpm publish"
+  },
+  "devDependencies": {
+    "@ouduidui/eslint-config-ts": "^0.2.0",
+    "@types/node": "^18.11.13",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.29.0",
+    "esno": "^0.16.3",
+    "pnpm": "^7.18.2",
+    "rimraf": "^3.0.2",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4",
+    "vitest": "^0.25.7"
+  }
+}

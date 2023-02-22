@@ -1,0 +1,50 @@
+{
+  "name": "vue3-lite",
+  "version": "0.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ouduidui/[name].git"
+  },
+  "author": "Dewey Ou <oushihao97@gmail.com>",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "test": "vitest",
+    "test:e2e": "cypress open",
+    "format": "eslint \"**/*.{vue,ts,js}\" --fix",
+    "lint": "eslint \"**/*.{vue,ts,js}\"",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@vueuse/core": "^8.9.3",
+    "pinia": "^2.0.16",
+    "pinia-persists": "^1.2.0",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.2"
+  },
+  "devDependencies": {
+    "@iconify-json/carbon": "^1.1.6",
+    "@ouduidui/eslint-config-vue": "^0.1.1",
+    "@types/node": "^18.0.5",
+    "@unocss/reset": "^0.44.3",
+    "@vitejs/plugin-vue": "^3.0.0",
+    "@vue/test-utils": "^2.0.2",
+    "cypress": "^10.3.0",
+    "eslint": "^8.19.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "jsdom": "^20.0.0",
+    "pnpm": "^7.5.1",
+    "typescript": "^4.7.4",
+    "unocss": "^0.44.3",
+    "unplugin-auto-import": "^0.9.3",
+    "unplugin-vue-components": "^0.21.1",
+    "vite": "^3.0.0",
+    "vite-plugin-pages": "^0.25.0",
+    "vitest": "^0.18.0",
+    "vue-tsc": "^0.38.5"
+  }
+}
