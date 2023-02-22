@@ -1,6 +1,6 @@
 {
   "name": "oootb",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.1",
   "description": "Used for creating a out-of-the-box template without additional configuration.",
   "keywords": [
     "create-app",
@@ -20,7 +20,7 @@
     "./dist/index.cjs"
   ],
   "bin": {
-    "ou": "./dist/index.cjs"
+    "oootb": "./dist/index.cjs"
   },
   "engines": {
     "node": "^14.13.1 || >=16.0.0"
