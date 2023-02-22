@@ -12,7 +12,7 @@
 <h2 align="center"><samp>Templates</samp></h2>
 
 <p align="center">
-  <samp> <a href="https://github.com/ouduidui/vue-template/blob/main/README.md">Vue</a> | <a href="https://github.com/ouduidui/react-template/blob/main/README.md">React</a> | <a href="https://github.com/ouduidui/typescript-template/blob/main/README.md">TypeScript</a> | <a href="https://github.com/ouduidui/nuxt-template/blob/main/README.md">Nuxt</a> | <a href="https://github.com/ouduidui/uniapp-template/blob/main/README.md">UniApp</a></samp>
+  <samp> <a href="https://github.com/ouduidui/oootb/tree/master/templates/vue">Vue</a> | <a href="https://github.com/ouduidui/oootb/tree/master/templates/react">React</a> | <a href="https://github.com/ouduidui/oootb/tree/master/templates/ts">TS Starter</a>
 </p>
 
 <br>
@@ -28,16 +28,12 @@
 <h2 align="center"><samp>Options</samp></h2>
 
 ```
-Usage: oootb [project-name] [options] 
-
-Arguments:
-  project-name               project name (default: "ou-app")
+Usage: oootb [options] [project-name]
 
 Options:
-  -t, --template <template>  choose a template (vue|ts|nuxt|uniapp) 
-  -r, --root                 create in the current directory (default: false)
-  -f, --force                for force overwriting (default: false)
-  -h, --help                 display help for command
+  -t, --template   choose a template (vue|react|ts)
+  -d, --directory  project directory
+  -h, --help       display help for command
 ```
 
 <br>
