@@ -1,6 +1,6 @@
 {
   "name": "oootb",
-  "version": "1.0.3",
+  "version": "2.0.0-beta.0",
   "description": "Used for creating a out-of-the-box template without additional configuration.",
   "keywords": [
     "create-app",
@@ -26,7 +26,7 @@
     "node": "^14.13.1 || >=16.0.0"
   },
   "scripts": {
-    "dev": "zx ./bin/dev.mjs && node ./dist/index.cjs",
+    "dev": "zx ./bin/dev.mjs & node ./dist/index.cjs",
     "build": "zx ./bin/build.mjs",
     "release": "npm run build && npx bumpp --commit --push --tag"
   },
