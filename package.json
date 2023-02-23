@@ -28,7 +28,9 @@
   "scripts": {
     "dev": "zx ./bin/dev.mjs & node ./dist/index.cjs",
     "build": "zx ./bin/build.mjs",
-    "release": "npm run build && npx bumpp --commit --push --tag"
+    "release": "npm run build && npx bumpp --commit --push --tag",
+    "ncu": "zx ./bin/ncu.mjs",
+    "ni": "zx ./bin/ni.mjs"
   },
   "bugs": {
     "url": "https://github.com/ouduidui/oootb/issues"
